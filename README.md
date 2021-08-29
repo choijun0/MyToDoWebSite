@@ -1,4 +1,9 @@
 #TodoList
-- [ ] makeFrame
+
+#makeFrame
+- [X] inputSpace(Frame)
+- [ ] inputSpace(CSS)
+- [ ] todomodule
+
 - [ ] edit
 - [ ] deploy 
