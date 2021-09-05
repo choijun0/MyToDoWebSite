@@ -1,11 +1,14 @@
 import React from "react";
 import Space from "./component/space";
+import {TodoContextProvider} from "./data/todoData/todoContext"; 
 
 const App = () => {
 
 	return (
 		<>
-		  <Space />
+		  <TodoContextProvider>
+		    <Space />
+			</TodoContextProvider>
 		</>
 	)
 }

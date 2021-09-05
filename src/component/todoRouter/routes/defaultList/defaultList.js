@@ -1,26 +1,23 @@
 import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import {GetStateFromContext, DispatchContext} from "../../../../data/todoData/todoContext";
+import TodoElement from "./todoElement";
 
-const TestTodo = styled.li`
-height: 50px;
-border: solid;
-background-color: #00cec9;
-display: flex;
-justify-content: center;
-align-items: center;
-` 
 
-const TestTodoCon = styled.ul`
+const Container = styled.ul`
 margin-top: 25px;
+width: 100%;
 `
 
-const DefaultList = ({todos}) => {
-	console.log(todos)
+const DefaultList = () => {
+	const {todos} = GetStateFromContext();
 	return (
-		<TestTodoCon>
-		  {todos.map(todo => <TestTodo><span>{todo.Title}</span></TestTodo>)}
-		</TestTodoCon>
+		<Container>
+		  {todos.map( todo => {
+				const {title, detail} = todo;
+				return <TodoElement title={title} detail={detail} />
+			})}
+		</Container>
 	)
 }
 

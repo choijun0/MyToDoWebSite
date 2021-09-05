@@ -11,7 +11,7 @@ justify-contents : space-between;
 `
 
 const Space = () => {
-
+	
 	return (
 		<Provider store={store}>
 	   	<Container>

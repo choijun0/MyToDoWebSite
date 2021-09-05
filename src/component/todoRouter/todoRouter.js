@@ -1,14 +1,14 @@
+import React, {useEffect} from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import Header from "./header";
-import {connect} from "react-redux"
 import DefaultList from "./routes/defaultList";
 
-const TodoRouter = ({state : {todos}}) => {
+const TodoRouter = () => {
 	return (
 		<Router>	
 		  <Header />
 			<Switch>
-			  <Route path="/" exact render={() => <DefaultList todos={todos}/>}></Route>
+			  <Route path="/" exact component={DefaultList}></Route>
 				<Route path=""></Route>
 				<Route path=""></Route>				
 			</Switch>
@@ -16,11 +16,4 @@ const TodoRouter = ({state : {todos}}) => {
 	)
 }
 
-const mapStateToProps = (state, ownProps) => {
-	return { state };
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-	return {};
-}
-export default connect(mapStateToProps, mapDispatchToProps)(TodoRouter);
+export default TodoRouter;

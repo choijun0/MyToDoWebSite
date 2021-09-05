@@ -2,8 +2,11 @@
 
 #makeFrame
 - [X] inputSpace(Frame)
-- [ ] inputSpace(CSS)
-- [ ] todomodule
+- [X] inputSpace(CSS)
+- [X] todoElement(Frame)
 
 - [ ] edit
 - [ ] deploy 
+
+#Technicque
+"GlboalPropsStyle" : Context

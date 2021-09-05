@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import { connect } from "react-redux";
 import {inputBackColor, inputFocusColor} from "./cssVar"
-import {ADD, DELETE} from "../../data/store";
+import {GetStateFromContext, DispatchContext} from "../../data/todoData/todoContext"
+import { ADD } from "../../data/todoData/action" 
 import {v4 as uuid} from "uuid";
 
 const InputContainer = styled.div`
@@ -80,30 +80,31 @@ font-size: 10px;
 font-weight: 500;
 `
 
-const Title = "Title";
-const Detail = "Detail";
-
 const InitialTodoState = {
-	[Title] : "",
-	[Detail] : ""
+	title : "",
+	detail : ""
 }
 
-const Insert = ({addTodo, todoState}) => {
+const Insert = () => {
 	const [todoData, setTodoData] = useState(InitialTodoState);	
-	const changeHandler = ({target}, type) => {
-		setTodoData({...todoData, [type] : target.value})
-	}
+	const dispatch = DispatchContext();
 
+	const changeTitleHandler = ({target}) => {
+		setTodoData({...todoData, title : target.value})
+	}
+	const changeDetailHandler = ({target}) => {
+		setTodoData({...todoData, detail : target.value})
+	}
 	const btnClickHandler= e => {
-		addTodo({...todoData, id : uuid() });
+		dispatch({ type : ADD , payload : { id : uuid(), ...todoData } });
 		setTodoData(InitialTodoState);
 	}
 
 	return (
 		<InputContainer>
-		  <TitleInput placeholder="Title" type="text" onChange={e => changeHandler(e,Title)} value={todoData.Title}/>
+		  <TitleInput placeholder="Title" type="text" onChange={e => changeTitleHandler(e)} value={todoData.title}/>
 			<Space ht={10}/>
-		  <DetailInput placeholder="Detail" type="text" onChange={e => changeHandler(e,Detail)} value={todoData.Detail}/>
+		  <DetailInput placeholder="Detail" type="text" onChange={e => changeDetailHandler(e)} value={todoData.detail}/>
 			<Space ht={10}/>
 			<ButtonContainer>
 			  <SubmitBtn>
@@ -113,12 +114,6 @@ const Insert = ({addTodo, todoState}) => {
 		</InputContainer>
 	)
 }
-const mapStateToProps = (state, ownProps) => {
-	return { todoState : state };
-}
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-	return { addTodo : data => {dispatch(ADD(data))} };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Insert);
+export default Insert;
 
