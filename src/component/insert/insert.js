@@ -2,15 +2,15 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import {inputBackColor, inputFocusColor} from "./cssVar"
 import {GetStateFromContext, DispatchContext} from "../../data/todoData/todoContext"
-import { ADD } from "../../data/todoData/action" 
+import { PUSH } from "../../data/todoData/action" 
 import {v4 as uuid} from "uuid";
 
 const InputContainer = styled.div`
 display: flex;
 flex-direction: column;
 justify-contnent: center;
-width: 400px;
-height: 400px;
+min-width: 300px;
+max-height: 400px;
 background-color: #81ecec;
 padding: 20px;
 `
@@ -82,7 +82,8 @@ font-weight: 500;
 
 const InitialTodoState = {
 	title : "",
-	detail : ""
+	detail : "",
+	complete : false 
 }
 
 const Insert = () => {
@@ -96,7 +97,7 @@ const Insert = () => {
 		setTodoData({...todoData, detail : target.value})
 	}
 	const btnClickHandler= e => {
-		dispatch({ type : ADD , payload : { id : uuid(), ...todoData } });
+		dispatch({ type : PUSH , payload : { id : uuid(), ...todoData } });
 		setTodoData(InitialTodoState);
 	}
 

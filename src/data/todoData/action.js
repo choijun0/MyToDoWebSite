@@ -1,1 +1,3 @@
-export const ADD = "ADD";
+export const PUSH = "PUSH";
+export const POP = "POP";
+export const COMPLETE = "COMPLETE";
