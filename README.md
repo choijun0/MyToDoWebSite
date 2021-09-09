@@ -8,5 +8,5 @@
 - [ ] edit
 - [ ] deploy 
 
-#Technicque
+#Technique
 "GlboalPropsStyle" : Context
