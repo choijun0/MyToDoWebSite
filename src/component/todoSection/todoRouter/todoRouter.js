@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-d
 import Header from "./header";
 import MainList from "./routes/mainList";
 import CompleteList from "./routes/completeList";
+import { createBrowserHistory } from "history";
 
-const TodoRouter = () => {
+const TodoRouter = ({base}) => {
 	return (
-		<Router>	
+		<Router basename={base}>	
 		  <Header />
 			<Switch>
 			  <Route path="/" exact component={MainList}></Route>

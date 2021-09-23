@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {GetStateFromContext, DispatchContext} from "../../../../data/todoData/todoContext";
+import {GetStateFromContext, DispatchContext} from "data/localData/todoData/todoContext";
 import TodoElement from "./todoElement";
 
 

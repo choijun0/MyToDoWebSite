@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import {inputBackColor, inputFocusColor} from "./cssVar"
-import {GetStateFromContext, DispatchContext} from "../../data/todoData/todoContext"
-import { PUSH } from "../../data/todoData/action" 
+import {GetStateFromContext, DispatchContext} from "data/localData/todoData/todoContext"
+import { PUSH } from "data/localData/todoData/action" 
 import {v4 as uuid} from "uuid";
 
 const InputContainer = styled.div`
