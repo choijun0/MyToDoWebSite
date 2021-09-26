@@ -1,12 +1,14 @@
-import React from "react";
+import React,{useState} from "react";
 import AuthSection from "component/homeSection/auth";
 
-
-export default () => {
+const HomeSection = () => {
 
   return (
     <>
       <AuthSection />      
     </>
   )
-}
+} 
+
+
+export default HomeSection;

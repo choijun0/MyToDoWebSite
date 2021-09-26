@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import {inputBackColor, inputFocusColor} from "./cssVar"
-import {GetStateFromContext, DispatchContext} from "data/localData/todoData/todoContext"
-import { PUSH } from "data/localData/todoData/action" 
 import {v4 as uuid} from "uuid";
+import {addDocumentToCollection} from "data/fireBase/func";
 
 const InputContainer = styled.div`
 display: flex;
@@ -86,26 +85,30 @@ const InitialTodoState = {
 	complete : false 
 }
 
-const Insert = () => {
-	const [todoData, setTodoData] = useState(InitialTodoState);	
-	const dispatch = DispatchContext();
-
+const Insert = ({userObj}) => {
+  
+	const [todoData, setTodoData] = useState(InitialTodoState);
+  
 	const changeTitleHandler = ({target}) => {
 		setTodoData({...todoData, title : target.value})
 	}
 	const changeDetailHandler = ({target}) => {
 		setTodoData({...todoData, detail : target.value})
 	}
-	const btnClickHandler= e => {
-		dispatch({ type : PUSH , payload : { id : uuid(), ...todoData } });
-		setTodoData(InitialTodoState);
+	const btnClickHandler= async e => {
+    e.preventDefault();
+    const feildForm = {
+      creatorId : userObj.uid,      
+      createdAt : Date.now(),
+      todoData
+    }
+    addDocumentToCollection(`userTodo${userObj.uid}`, feildForm).then(()=> console.log("success!!")).finally(()=> setTodoData(InitialTodoState));
 	}
-
 	return (
 		<InputContainer>
-		  <TitleInput placeholder="Title" type="text" onChange={e => changeTitleHandler(e)} value={todoData.title}/>
+		  <TitleInput placeholder="Title" type="text" onChange={changeTitleHandler} value={todoData.title}/>
 			<Space ht={10}/>
-		  <DetailInput placeholder="Detail" type="text" onChange={e => changeDetailHandler(e)} value={todoData.detail}/>
+		  <DetailInput placeholder="Detail" type="text" onChange={changeDetailHandler} value={todoData.detail}/>
 			<Space ht={10}/>
 			<ButtonContainer>
 			  <SubmitBtn>

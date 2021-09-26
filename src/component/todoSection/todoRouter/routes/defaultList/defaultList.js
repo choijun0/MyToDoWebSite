@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import {GetStateFromContext, DispatchContext} from "data/localData/todoData/todoContext";
 import TodoElement from "./todoElement";
 
 
@@ -8,6 +7,17 @@ const Container = styled.ul`
 margin-top: 25px;
 width: 100%;
 `
+
+const getData = (propName) =>{
+	switch(propName){
+		case "main" :
+
+		case "complete" :
+
+	}
+}
+
+
 
 const DefaultList = ({propName}) => {
 	const todos = getData(propName);
@@ -19,16 +29,6 @@ const DefaultList = ({propName}) => {
 			})}
 		</Container>
 	)
-}
-const getData = (propName) =>{
-	switch(propName){
-		case "main" :
-		  const {main} = GetStateFromContext();
-		  return main;
-		case "complete" :
-		  const {complete} = GetStateFromContext();
-		  return complete;
-	}
 }
 
 export default DefaultList

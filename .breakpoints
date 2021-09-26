@@ -1,11 +1,27 @@
 {
   "files": {
+    "src/component/homeSection/auth/authRouter/joinSection": [
+      {
+        "id": "e9d6fe97-c492-469a-b497-0564d04439af",
+        "line": 1,
+        "version": 0,
+        "index": 0
+      }
+    ],
     "src/component/homeSection/auth/authSection.js": [
       {
         "id": "1e460220-6bcb-4e7e-b42a-0612431ab727",
-        "line": 17,
-        "version": 758,
-        "index": 420
+        "line": 1,
+        "version": 866,
+        "index": 38
+      }
+    ],
+    "src/data/localData/todoData/todoContext.js": [
+      {
+        "id": "23d4fe18-892f-4949-a333-e97536b8195d",
+        "line": 8,
+        "version": 1,
+        "index": 269
       }
     ]
   }

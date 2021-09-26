@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import {GetStateFromContext, DispatchContext} from "data/localData/todoData/todoContext"
-import {COMPLETE} from "data/localData/todoData/action"
 
 const Container = styled.div`
 display: flex;
@@ -40,9 +38,8 @@ color: #636e72;
 
 
 const CompleteBtn = ({ id }) => {
-	const dispatch = DispatchContext();
 	const clickBtnHandler = () => {
-		dispatch({ type: COMPLETE, payload : id })
+		
 	}
 	return (
 		<Container onClick={clickBtnHandler}>

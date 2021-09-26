@@ -1,9 +1,8 @@
-import React from "react";
+import React,{useState, useEffect, useContext, createContext} from "react";
 import MainRouter from "component/mainRouter"
-import {TodoContextProvider} from "data/localData/todoData/todoContext"; 
+import {authService} from "data/fireBase/func";
 
 const App = () => {
-
 	return (
 		<>
 		  <MainRouter />
