@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 import {inputBackColor, inputFocusColor} from "./cssVar"
 import {v4 as uuid} from "uuid";
-import {addDocumentToCollection} from "data/fireBase/func";
+import {setDocumentToCollection} from "data/fireBase/func";
 
 const InputContainer = styled.div`
 display: flex;
@@ -102,7 +102,7 @@ const Insert = ({userObj}) => {
       createdAt : Date.now(),
       todoData
     }
-    addDocumentToCollection(`userTodo${userObj.uid}`, feildForm).then(()=> console.log("success!!")).finally(()=> setTodoData(InitialTodoState));
+    setDocumentToCollection(`userTodo${userObj.uid}`, Date.now().toString(), feildForm).then(()=> setTodoData(InitialTodoState));
 	}
 	return (
 		<InputContainer>

@@ -11,14 +11,13 @@ justify-contents : space-between;
 `
 
 const TodoSection = () => {
-  const data = GetMainState();
-  console.log(data.userObj);
+  const {userObj} = GetMainState();
 	return (
     <>
-      {data ?  
+      {userObj ?  
       <Container>
-		  		<Insert userObj={data.userObj} />
-		  		<TodoRouter />
+		  		<Insert userObj={userObj} />
+		  		<TodoRouter userObj={userObj}/>
     	</Container> : "please sign in first"}
     </>
 	)

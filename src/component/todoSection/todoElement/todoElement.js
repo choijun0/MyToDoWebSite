@@ -36,9 +36,7 @@ flex-direction : column;
 const BtnContainer = styled.div`
 `
 
-//다음에 할꺼: 버튼에 기능부여, 리디자인
-
-const TodoElement = ({title, detail, id, complete}) => {
+const TodoElement = ({data : {todoData : {title, detail, id, complete}}}) => {
 	return (
 		<MainContainer>
 		  <ContentContainer>
@@ -49,7 +47,6 @@ const TodoElement = ({title, detail, id, complete}) => {
 			    <DetailText>{`Detail: ${detail}`}</DetailText>
 			  </DetailContainer>
 			</ContentContainer>
-			{console.log(complete)}
 			{complete ? null : <CompleteBtn id={id}/>}
 		</MainContainer>
 	) 

@@ -11,7 +11,8 @@ updateProfile
 } from "firebase/auth";
 
 import { 
-getFirestore, 
+getFirestore,
+setDoc, 
 addDoc, 
 getDocs, 
 collection, 
@@ -49,33 +50,36 @@ export const signInWithEmail = (email, password) => {
 //#.2 FireStore
 const database = getFirestore(app); 
 
-export const addDocumentToCollection = (collectionName, data) =>{
-  return addDoc(collection(database, collectionName), data);
+export const setDocumentToCollection = (colId, docId, data) =>{
+  return setDoc(doc(database, colId, docId), data);
 }
 
-export const getDataFromCollection = (collectionName) => {
-  return getDocs(collection(database, collectionName));
+export const addDocumentToCollection = (colId, data) =>{
+  return addDoc(collection(database, colId), data);
+
 }
 
-export const watchDataBase = (collectionName, callback) => {
-  const unsub = onSnapshot(collection(database, collectionName), (snapShot) => {
+export const getDataFromCollection = (colId) => {
+  return getDocs(collection(database, colId));
+}
+
+export const watchDataBase = (colId, callback) => {
+  const unsub = onSnapshot(collection(database, colId), (snapShot) => {
     if(callback) {
       callback(snapShot);
     }
   });
 }
 
-export const deleteDocumentById = (collectionName, documentName) => {
-  console.log(collectionName, documentName);
-  return deleteDoc(doc(database, collectionName, documentName));
+export const deleteDocumentById = (colId, docId) => {
+  return deleteDoc(doc(database, colId, docId));
 }
 
-export const updateDocumentById = (collectionName, documentName, data) => {
-  console.log(collectionName, documentName, data);
-  return updateDoc(doc(database, collectionName, documentName), data);
+export const updateDocumentById = (colId, docId, data) => {
+  return updateDoc(doc(database, colId, docId), data);
 }
 
-export const getDocumentByQuery = (collectionName, prop, operator, condition) => {
-  const q = query(collection(database, collectionName), where(prop, operator, condition));
+export const getDocumentByQuery = (colId, prop, operator, condition) => {
+  const q = query(collection(database, colId), where(prop, operator, condition));
   return getDocs(q);
 }
