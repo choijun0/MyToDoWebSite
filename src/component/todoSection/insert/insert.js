@@ -100,9 +100,9 @@ const Insert = ({userObj}) => {
     const feildForm = {
       creatorId : userObj.uid,      
       createdAt : Date.now(),
-      todoData
+      ...todoData
     }
-    setDocumentToCollection(`userTodo${userObj.uid}`, Date.now().toString(), feildForm).then(()=> setTodoData(InitialTodoState));
+    setDocumentToCollection(userObj.todoColId, Date.now().toString(), feildForm).then(()=> setTodoData(InitialTodoState));
 	}
 	return (
 		<InputContainer>

@@ -10,22 +10,24 @@ const TodoRouter = ({base, userObj}) => {
   const [complete, setComplete] = useState([]);
   const [unComplete, setUnComplete] = useState([]);
   useEffect(()=>{
-    const colId = `userTodo${userObj.uid}`;
+    const colId = userObj.todoColId;
     watchDataBase(colId, ({docs}) => {
       setComplete([]);
       setUnComplete([]);
       docs.forEach(doc => {
         const data = doc.data();
-        if(data.todoData.complete){
+        if(data.complete){
           setComplete(prev => [...prev, { 
             ...data,
-            id: doc.id
+            docId: doc.id,
+            todoColId : userObj.todoColId
           }]);
         }
         else{
           setUnComplete(prev => [...prev, { 
             ...data,
-            id: doc.id
+            docId: doc.id,
+            todoColId : userObj.todoColId
           }]);
         }
       })
@@ -36,10 +38,10 @@ const TodoRouter = ({base, userObj}) => {
 		  <Header />
 			<Switch>
 			  <Route path="/" exact>
-          <DefaultList userObj={userObj} data={unComplete}/>
+          <DefaultList data={unComplete}/>
         </Route>
 				<Route path="/complete" exact>
-          <CompleteList userObj={userObj} data={complete}/>
+          <CompleteList data={complete}/>
         </Route>
 				<Route path=""></Route>				
 			</Switch>
@@ -48,3 +50,5 @@ const TodoRouter = ({base, userObj}) => {
 }
 
 export default TodoRouter;
+
+

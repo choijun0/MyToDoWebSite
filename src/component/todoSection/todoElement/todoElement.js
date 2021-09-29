@@ -36,7 +36,8 @@ flex-direction : column;
 const BtnContainer = styled.div`
 `
 
-const TodoElement = ({data : {todoData : {title, detail, id, complete}}}) => {
+const TodoElement = ({data}) => {
+  const { todoColId, docId, title, detail, complete } = data;
 	return (
 		<MainContainer>
 		  <ContentContainer>
@@ -47,7 +48,7 @@ const TodoElement = ({data : {todoData : {title, detail, id, complete}}}) => {
 			    <DetailText>{`Detail: ${detail}`}</DetailText>
 			  </DetailContainer>
 			</ContentContainer>
-			{complete ? null : <CompleteBtn id={id}/>}
+			{complete ? null : <CompleteBtn todoColId={todoColId} docId={docId}/>}
 		</MainContainer>
 	) 
 }

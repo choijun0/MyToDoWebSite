@@ -22,7 +22,8 @@ query,
 updateDoc, 
 deleteField, 
 deleteDoc,
-where 
+where,
+runTransaction 
 } from "firebase/firestore"
 
 import {
@@ -75,8 +76,18 @@ export const deleteDocumentById = (colId, docId) => {
   return deleteDoc(doc(database, colId, docId));
 }
 
-export const updateDocumentById = (colId, docId, data) => {
-  return updateDoc(doc(database, colId, docId), data);
+export const updateDocumentById = (colId, docId, updateData) => {
+  return updateDoc(doc(database, colId, docId), updateData);
+}
+
+export const upDateDocFieldWithTransaction = (colId, docId, updateData) => {
+  const docRef = doc(database, colId, docId);
+  return runTransaction(database, async (transaction) => {
+    const sfDoc = await transaction.get(docRef);
+    if(sfDoc.exists()){
+      transaction.update(docRef, updateData);
+    }
+  })
 }
 
 export const getDocumentByQuery = (colId, prop, operator, condition) => {

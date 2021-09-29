@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Insert from "./insert";
 import { Provider } from "react-redux";
@@ -11,13 +11,19 @@ justify-contents : space-between;
 `
 
 const TodoSection = () => {
-  const {userObj} = GetMainState();
+  const data = GetMainState();
+  const [userObj, setUserObj] = useState(null);
+  useEffect(()=>{
+    if(data){
+      setUserObj(data.userObj)
+    }
+  },[data])
 	return (
     <>
       {userObj ?  
       <Container>
 		  		<Insert userObj={userObj} />
-		  		<TodoRouter userObj={userObj}/>
+		  		<TodoRouter base={"todo"} userObj={userObj}/>
     	</Container> : "please sign in first"}
     </>
 	)

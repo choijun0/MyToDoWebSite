@@ -14,11 +14,12 @@ const MainRouter = () => {
   const [mainState, setMainState] = useState(null);
   useEffect(()=>{
     authService.onAuthStateChanged((user)=>{
-      if(user){
+      if(Boolean(user)){
         const container = {
           userObj : {
             displayName : user.displayName,
-            uid : user.uid
+            uid : user.uid,
+            todoColId : `userTodo${user.uid}`
           }
         }
         setMainState(container);

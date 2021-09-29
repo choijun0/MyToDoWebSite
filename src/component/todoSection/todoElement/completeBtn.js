@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {upDateDocFieldWithTransaction} from "data/fireBase/func"
 
 const Container = styled.div`
 display: flex;
@@ -37,9 +38,10 @@ color: #636e72;
 `
 
 
-const CompleteBtn = ({ id }) => {
-	const clickBtnHandler = () => {
-		
+const CompleteBtn = ({ todoColId, docId }) => {
+	const clickBtnHandler = (e) => {
+    e.preventDefault();
+    upDateDocFieldWithTransaction(todoColId, docId, { complete : true }).then().catch(e => console.log(e.message));
 	}
 	return (
 		<Container onClick={clickBtnHandler}>
